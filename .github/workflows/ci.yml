@@ -37,7 +37,10 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t ghcr.io/${{ github.repository_owner }}/credit-card-fraud-api:latest .
+        run: |
+          IMAGE_NAME="ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/credit-card-fraud-api:latest"
+          echo "IMAGE_NAME=$IMAGE_NAME" >> "$GITHUB_ENV"
+          docker build -t "$IMAGE_NAME" .
 
       - name: Push Docker image
-        run: docker push ghcr.io/${{ github.repository_owner }}/credit-card-fraud-api:latest
+        run: docker push "$IMAGE_NAME"
