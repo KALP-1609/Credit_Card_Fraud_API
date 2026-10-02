@@ -24,3 +24,6 @@ jobs:
 
       - name: Run tests
         run: python -m pytest tests/test_api.py
+
+      - name: Build Docker image
+        run: docker build -t fraud-detection-api
