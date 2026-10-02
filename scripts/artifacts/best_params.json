@@ -1,0 +1,1 @@
+{"hidden1": 224, "hidden2": 32, "dropout1": 0.10220884684944097, "dropout2": 0.42618457138193366, "learning_rate": 0.002592475660475159, "weight_decay": 0.00015382308040278996, "batch_size": 256, "epochs": 12}
