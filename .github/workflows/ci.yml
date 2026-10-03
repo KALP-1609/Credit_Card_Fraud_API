@@ -38,9 +38,14 @@ jobs:
 
       - name: Build Docker image
         run: |
-          IMAGE_NAME="ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/credit-card-fraud-api:latest"
-          echo "IMAGE_NAME=$IMAGE_NAME" >> "$GITHUB_ENV"
-          docker build -t "$IMAGE_NAME" .
+          IMAGE_NAME="ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/credit-card-fraud-api"
+          docker build \
+            -t "$IMAGE_NAME:latest" \
+            -t "$IMAGE_NAME:${GITHUB_SHA}" \
+            .
 
-      - name: Push Docker image
-        run: docker push "$IMAGE_NAME"
+      - name: Push Docker images
+        run: |
+          IMAGE_NAME="ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/credit-card-fraud-api"
+          docker push "$IMAGE_NAME:latest"
+          docker push "$IMAGE_NAME:${GITHUB_SHA}"
