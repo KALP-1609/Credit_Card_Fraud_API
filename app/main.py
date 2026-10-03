@@ -32,6 +32,10 @@ def home():
         "message" : "Credit Card Fraud Detection API is running"
     }
 
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
+
 @app.post("/predict")
 def prediction(transaction: Transaction):
     data = transaction.model_dump()
